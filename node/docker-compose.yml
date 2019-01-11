@@ -1,0 +1,15 @@
+version: '3'
+services:
+  wrk:
+    build: ../wrk
+    depends_on:
+      - api
+  api:
+    build: .
+    environment:
+      PORT: "8080"
+      DB_URI: "mongodb://db:27017/test"
+    depends_on:
+      - db
+  db:
+    image: mongo
