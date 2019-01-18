@@ -37,7 +37,13 @@ class MainVerticle : AbstractVerticle() {
                     if (rs.succeeded()) {
                         rc.response()
                             .putHeader("Content-Type", "text/plain")
+                            .setStatusCode(200)
                             .end("OK")
+                    } else {
+                        rc.response()
+                            .putHeader("Content-Type", "text/plain")
+                            .setStatusCode(500)
+                            .end("INTERNAL_SERVER_ERROR")
                     }
                 }
             } ?: run {

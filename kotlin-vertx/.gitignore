@@ -1,6 +1,2 @@
-/.vertx
-/.project
-/.settings
-/.classpath
-/target
-/perf.iml
+/.idea
+/*.iml
