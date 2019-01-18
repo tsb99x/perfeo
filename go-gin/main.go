@@ -19,10 +19,10 @@ func getEnvVar(varName string) string {
 }
 
 func main() {
-	dbUri := getEnvVar("DB_URI")
+	dbURI := getEnvVar("DB_URI")
 	port := getEnvVar("PORT")
 
-	client, err := mongo.Connect(context.TODO(), dbUri)
+	client, err := mongo.Connect(context.TODO(), dbURI)
 	if err != nil {
 		log.Fatal(err)
 	}
