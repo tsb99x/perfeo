@@ -1,24 +1,31 @@
 # Perfeo
 
-Project to store sample implementations of HTTP web servers.
+Directory of sample HTTP web server implementations.
+Each implementation is compliant with the general API specification.
 
 ## API specification
 
-Each server should fully implement following specification:
-
 - Healthcheck PING/PONG route.
+
     `GET localhost:8080/ping -> 200 PONG`
+
 - Database (MongoDB) insert route.
+
     `POST {"sample":"json"} localhost:8080/ -> 200 OK`
+
+    `POST {"broken...json"} localhost:8080/ -> 400 BAD_REQUEST`
+
+    `POST {"sample":"json"} localhost:8080/ -> 500 INTERNAL_SERVER_ERROR`
 
 ## Packaging
 
-Source code must be built and run in container.
-Docker is selected format of containerization.
-Healthchecks implemented in each of container.
+Source code is to be built and run in a container (Docker).
+To start default benchmarking suite, use `docker-compose up`.
+To start only API part, use `docker-compose up api`.
+Health checks implemented in each container as a convenience for chained launch.
 
 ## Benchmarking
 
-Benchmarking is done with [wrk](https://github.com/wg/wrk) utility.
-Utility launched after DB and API to ensure successful launch.
-Standard settings are used and can be found in `wrk/Dockerfile`.
+Benchmarking is done by [wrk](https://github.com/wg/wrk) utility, wrapped in [williamyeh/wrk](https://hub.docker.com/r/williamyeh/wrk/) image.
+Utility launched after DB and API by default.
+Tread/connection settings can be found in `wrk/Dockerfile`.
