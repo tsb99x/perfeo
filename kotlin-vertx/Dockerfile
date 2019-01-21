@@ -2,7 +2,7 @@ FROM maven
 
 WORKDIR /usr/src/perfeo
 COPY . .
-RUN mvn clean package
+RUN mvn package
 
 EXPOSE 8080
 

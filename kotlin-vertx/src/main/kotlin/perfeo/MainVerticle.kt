@@ -2,7 +2,6 @@ package perfeo
 
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.Future
-import io.vertx.core.http.HttpMethod
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.mongo.MongoClient
 import io.vertx.ext.web.Router
@@ -22,16 +21,16 @@ class MainVerticle : AbstractVerticle() {
 
         val client = MongoClient.createShared(vertx, dbConfig)
 
-        router.route().handler(BodyHandler.create());
+        router.route().handler(BodyHandler.create())
 
-        router.route(HttpMethod.GET, "/ping").handler { rc ->
+        router.get("/ping").handler { rc ->
             rc.response()
                 .putHeader("Content-Type", "text/plain")
                 .setStatusCode(200)
                 .end("PONG")
         }
 
-        router.route(HttpMethod.POST, "/").handler { rc ->
+        router.post("/").handler { rc ->
             rc.bodyAsJson?.let { json ->
                 client.save("test", json) { rs ->
                     if (rs.succeeded()) {
@@ -44,6 +43,7 @@ class MainVerticle : AbstractVerticle() {
                             .putHeader("Content-Type", "text/plain")
                             .setStatusCode(500)
                             .end("INTERNAL_SERVER_ERROR")
+                        throw rs.cause()
                     }
                 }
             } ?: run {
