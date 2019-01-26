@@ -28,4 +28,4 @@ Health checks implemented in each container as a convenience for chained launch.
 
 Benchmarking is done by [wrk](https://github.com/wg/wrk) utility, wrapped in [williamyeh/wrk](https://hub.docker.com/r/williamyeh/wrk/) image.
 Utility launched after DB and API by default.
-Tread/connection settings can be found in `wrk/Dockerfile`.
+Thread/connection settings can be found in `wrk/Dockerfile`.

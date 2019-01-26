@@ -1,18 +1,14 @@
-version: "2.2"
+version: "2.4"
 services:
 
   wrk:
     build: ../wrk
-    cpus: "2.0"
-    mem_limit: 1024M
     depends_on:
       api:
         condition: service_healthy
 
   api:
     build: .
-    cpus: "2.0"
-    mem_limit: 2048M
     environment:
       NODE_ENV: "production"
       DEBUG: "*"
@@ -25,7 +21,5 @@ services:
 
   db:
     image: mongo
-    cpus: "2.0"
-    mem_limit: 4096M
     ports:
       - "27017:27017"
