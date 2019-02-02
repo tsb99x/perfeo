@@ -24,19 +24,21 @@ client.connect((err) => {
             })
 
             req.on('end', () => {
+                let json
+                
                 try {
-                    const json = JSON.parse(body)
-
-                    db.collection('test').insertOne(json, (err) => {
-                        if (err) {
-                            sendPlainText(res, 500, 'INTERNAL_SERVER_ERROR')
-                        } else {
-                            sendPlainText(res, 200, 'OK')
-                        }
-                    })
+                    json = JSON.parse(body)
                 } catch (e) {
                     sendPlainText(res, 400, 'BAD_REQUEST')
                 }
+
+                db.collection('test').insertOne(json, (err) => {
+                    if (err) {
+                        sendPlainText(res, 500, 'INTERNAL_SERVER_ERROR')
+                    } else {
+                        sendPlainText(res, 200, 'OK')
+                    }
+                })
             })
         } else {
             sendPlainText(res, 404, 'NOT_FOUND')
