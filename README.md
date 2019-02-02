@@ -1,7 +1,7 @@
 # Perfeo
 
 Directory of sample HTTP web server implementations.
-Each implementation is compliant with the general API specification.
+Each implementation should be compliant with the general API specification.
 
 ## API specification
 
@@ -20,7 +20,7 @@ Each implementation is compliant with the general API specification.
 ## Packaging
 
 Source code is to be built and run in a container (Docker).
-To start default benchmarking suite, use `docker-compose up`.
+To start default benchmarking suite, use `docker-compose up wrk`.
 To start only API part, use `docker-compose up api`.
 Health checks implemented in each container as a convenience for chained launch.
 
