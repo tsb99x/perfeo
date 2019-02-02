@@ -1,0 +1,4 @@
+asyncio
+motor
+uvloop
+sanic

@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 50
+      name: "Warm up the application"
+    - duration: 600
+      arrivalRate: 50
+      name: "Sustained max load"
+scenarios:
+  - flow:
+      - post:
+          url: "/"
+          json:
+            a: 1
+            b: 2
+            c: 3

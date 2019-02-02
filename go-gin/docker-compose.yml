@@ -1,0 +1,22 @@
+version: '2.2'
+services:
+  wrk:
+    build: ../wrk
+    cpus: '2.0'
+    mem_limit: 1024M
+    depends_on:
+      - api
+  api:
+    build: .
+    cpus: '2.0'
+    mem_limit: 2048M
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  db:
+    image: mongo
+    cpus: '2.0'
+    mem_limit: 4096M
+    ports:
+      - "27017:27017"

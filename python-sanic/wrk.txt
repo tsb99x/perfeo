@@ -1,0 +1,46 @@
+Attaching to python-sanic_wrk_1
+[36mwrk_1  |[0m Running 10s test @ http://api:8080/
+[36mwrk_1  |[0m   32 threads and 256 connections
+[36mwrk_1  |[0m   Thread Stats   Avg      Stdev     Max   +/- Stdev
+[36mwrk_1  |[0m     Latency   122.40ms   65.14ms 707.80ms   75.32%
+[36mwrk_1  |[0m     Req/Sec    67.48     25.68   171.00     68.52%
+[36mwrk_1  |[0m   Latency Distribution
+[36mwrk_1  |[0m      50%  102.69ms
+[36mwrk_1  |[0m      75%  159.68ms
+[36mwrk_1  |[0m      90%  199.65ms
+[36mwrk_1  |[0m      99%  358.29ms
+[36mwrk_1  |[0m   21576 requests in 10.10s, 2.47MB read
+[36mwrk_1  |[0m Requests/sec:   2136.71
+[36mwrk_1  |[0m Transfer/sec:    250.40KB
+[36mpython-sanic_wrk_1 exited with code 0
+[0mAttaching to python-sanic_wrk_1
+[36mwrk_1  |[0m Running 10s test @ http://api:8080/
+[36mwrk_1  |[0m   32 threads and 256 connections
+[36mwrk_1  |[0m   Thread Stats   Avg      Stdev     Max   +/- Stdev
+[36mwrk_1  |[0m     Latency   119.19ms   64.57ms 579.39ms   66.35%
+[36mwrk_1  |[0m     Req/Sec    68.53     31.57   262.00     71.82%
+[36mwrk_1  |[0m   Latency Distribution
+[36mwrk_1  |[0m      50%  107.66ms
+[36mwrk_1  |[0m      75%  170.73ms
+[36mwrk_1  |[0m      90%  198.02ms
+[36mwrk_1  |[0m      99%  299.18ms
+[36mwrk_1  |[0m   22063 requests in 10.10s, 2.52MB read
+[36mwrk_1  |[0m Requests/sec:   2184.79
+[36mwrk_1  |[0m Transfer/sec:    256.03KB
+[36mpython-sanic_wrk_1 exited with code 0
+[0mAttaching to python-sanic_wrk_1
+[36mwrk_1  |[0m Running 10s test @ http://api:8080/
+[36mwrk_1  |[0m   32 threads and 256 connections
+[36mwrk_1  |[0m   Thread Stats   Avg      Stdev     Max   +/- Stdev
+[36mwrk_1  |[0m     Latency   105.23ms   46.33ms 341.34ms   66.58%
+[36mwrk_1  |[0m     Req/Sec    76.24     27.90   260.00     74.84%
+[36mwrk_1  |[0m   Latency Distribution
+[36mwrk_1  |[0m      50%  100.30ms
+[36mwrk_1  |[0m      75%  120.21ms
+[36mwrk_1  |[0m      90%  177.38ms
+[36mwrk_1  |[0m      99%  204.22ms
+[36mwrk_1  |[0m   24589 requests in 10.09s, 2.81MB read
+[36mwrk_1  |[0m Requests/sec:   2436.26
+[36mwrk_1  |[0m Transfer/sec:    285.50KB
+[36mpython-sanic_wrk_1 exited with code 0
+[0m
