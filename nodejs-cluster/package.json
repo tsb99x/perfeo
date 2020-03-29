@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-cluster",
+  "version": "1.0.0",
+  "description": "Part of Perfeo",
+  "main": "src/cluster.js",
+  "scripts": {
+    "start": "node src/cluster.js"
+  },
+  "author": "Anton Muravev",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.1.1",
+    "mongodb": "^3.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  },
+  "private": true
+}

@@ -1,11 +1,17 @@
 FROM golang
 
-WORKDIR /go/src/app
+ENV GO111MODULE=on
+
+WORKDIR /go/src/perfeo
+
+COPY go.mod go.sum ./
+RUN go get -d -v
 COPY . .
+RUN go install -v
 
-RUN go get -d -v ./...
-RUN go install -v ./...
+EXPOSE 8080
 
-ENV GIN_MODE release
+CMD [ "/go/bin/perfeo" ]
 
-CMD ["app"]
+HEALTHCHECK --interval=5s --timeout=30s --retries=3 \
+  CMD curl --fail http://localhost:8080/ping || exit 1

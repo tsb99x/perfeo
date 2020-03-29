@@ -9,6 +9,11 @@ services:
 
   api:
     build: .
+    environment:
+      NODE_ENV: "production"
+      DEBUG: "*"
+      PORT: "8080"
+      DB_URI: "mongodb://db:27017/test"
     ports:
       - "8080:8080"
     depends_on:
@@ -16,3 +21,5 @@ services:
 
   db:
     image: mongo
+    ports:
+      - "27017:27017"
