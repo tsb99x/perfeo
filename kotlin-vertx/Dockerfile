@@ -1,4 +1,4 @@
-FROM maven
+FROM docker.io/library/maven
 
 WORKDIR /usr/src/perfeo
 COPY . .

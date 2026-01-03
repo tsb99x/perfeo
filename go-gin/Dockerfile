@@ -1,4 +1,4 @@
-FROM golang
+FROM docker.io/library/golang
 
 ENV GO111MODULE=on
 

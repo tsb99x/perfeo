@@ -19,6 +19,6 @@ services:
       - db
 
   db:
-    image: mongo
+    image: docker.io/library/mongo
     ports:
       - "27017:27017"

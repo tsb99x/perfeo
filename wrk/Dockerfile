@@ -1,4 +1,4 @@
-FROM williamyeh/wrk
+FROM docker.io/williamyeh/wrk
 
 WORKDIR /usr/src/perfeo
 COPY . .
