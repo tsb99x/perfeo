@@ -24,6 +24,16 @@ To start default benchmarking suite, use `docker-compose up wrk`.
 To start only API part, use `docker-compose up api`.
 Health checks implemented in each container as a convenience for chained launch.
 
+## Podman
+
+If you use Podman, be sure to build images with Docker format, as OCI format
+does not yet support HEALTHCHECKs.
+
+```sh
+podman-compose --podman-build-args='--format docker' build
+podman-compose up wrk
+```
+
 ## Benchmarking
 
 Benchmarking is done by [wrk](https://github.com/wg/wrk) utility, wrapped in [williamyeh/wrk](https://hub.docker.com/r/williamyeh/wrk/) image.
