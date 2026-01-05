@@ -6,7 +6,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
-CMD [ "python", "./main.py" ]
+CMD [ "sanic", "main:app", "--host=0.0.0.0", "--port=8080", "--fast" ]
 
 HEALTHCHECK --interval=5s --timeout=30s --retries=3 \
   CMD curl --fail http://localhost:8080/ping || exit 1
