@@ -1,4 +1,4 @@
-version: "2.4"
+version: "3"
 services:
 
   wrk:
@@ -18,6 +18,6 @@ services:
       - db
 
   db:
-    image: docker.io/library/mongo
+    image: docker.io/library/mongo:4
     ports:
       - "27017:27017"

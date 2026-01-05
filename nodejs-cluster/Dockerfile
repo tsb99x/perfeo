@@ -1,4 +1,4 @@
-FROM docker.io/library/node
+FROM docker.io/library/node:14
 
 WORKDIR /usr/src/perfeo
 
