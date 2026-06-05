@@ -11,7 +11,7 @@ async def attach_db(app):
 
 
 @app.route("/ping", methods=["GET"])
-async def ping(request):
+async def ping(_):
     return text("PONG")
 
 
