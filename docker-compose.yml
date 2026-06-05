@@ -1,0 +1,13 @@
+version: "3"
+services:
+
+  wrk:
+    build: ../wrk
+    depends_on:
+      api:
+        condition: service_healthy
+
+  db:
+    image: docker.io/library/mongo:8
+    ports:
+      - "27017:27017"

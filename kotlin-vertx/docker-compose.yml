@@ -1,11 +1,7 @@
 version: "3"
+include:
+  - ../docker-compose.yml
 services:
-
-  wrk:
-    build: ../wrk
-    depends_on:
-      api:
-        condition: service_healthy
 
   api:
     build: .
@@ -16,8 +12,3 @@ services:
       - "8080:8080"
     depends_on:
       - db
-
-  db:
-    image: docker.io/library/mongo:4
-    ports:
-      - "27017:27017"
