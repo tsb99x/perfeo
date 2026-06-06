@@ -7,7 +7,7 @@
     "start": "node src/cluster.js"
   },
   "author": "Anton Muravev",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "dependencies": {
     "debug": "^4.1.1",
     "mongodb": "^3.3.1"
