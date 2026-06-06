@@ -1,15 +1,15 @@
 package perfeo
 
-import io.vertx.core.AbstractVerticle
 import io.vertx.core.Future
+import io.vertx.core.VerticleBase
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.mongo.MongoClient
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.BodyHandler
 
-class MainVerticle : AbstractVerticle() {
+class MainVerticle : VerticleBase() {
 
-    override fun start(startFuture: Future<Void>) {
+    override fun start(): Future<*>? {
         val router = Router.router(vertx)
 
         val port = System.getenv("PORT").toInt()
@@ -31,21 +31,20 @@ class MainVerticle : AbstractVerticle() {
         }
 
         router.post("/").handler { rc ->
-            rc.bodyAsJson?.let { json ->
-                client.save("test", json) { rs ->
-                    if (rs.succeeded()) {
+            rc.body().asJsonObject()?.let { json ->
+                client.save("test", json)
+                    .onSuccess { _ ->
                         rc.response()
                             .putHeader("Content-Type", "text/plain")
                             .setStatusCode(200)
                             .end("OK")
-                    } else {
+                    }
+                    .onFailure { _ ->
                         rc.response()
                             .putHeader("Content-Type", "text/plain")
                             .setStatusCode(500)
                             .end("INTERNAL_SERVER_ERROR")
-                        throw rs.cause()
                     }
-                }
             } ?: run {
                 rc.response()
                     .putHeader("Content-Type", "text/plain")
@@ -54,15 +53,11 @@ class MainVerticle : AbstractVerticle() {
             }
         }
 
-        vertx.createHttpServer()
+        return vertx.createHttpServer()
             .requestHandler(router::handle)
-            .listen(port) { http ->
-                if (http.succeeded()) {
-                    startFuture.complete()
-                    println("HTTP server started on port 8080")
-                } else {
-                    startFuture.fail(http.cause())
-                }
+            .listen(port)
+            .onSuccess {
+                println("HTTP server started on port 8080")
             }
     }
 }
