@@ -1,7 +1,6 @@
-function getEnv (varName) {
+function getEnv (varName, defaultValue) {
     const res = process.env[varName]
-    if (!res) throw Error(`Failed to get '${varName}' env variable!`)
-    return res
+    return res ?? defaultValue
 }
 
 function sendPlainText (res, statusCode, plainTextMsg) {

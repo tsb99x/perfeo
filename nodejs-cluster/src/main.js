@@ -5,8 +5,8 @@ const log = require('debug')(`worker:${worker.id}`)
 
 const { getEnv, sendPlainText } = require('./utils')
 
-const port = getEnv('PORT')
-const dbUri = getEnv('DB_URI')
+const port = getEnv('PORT', 8080)
+const dbUri = getEnv('DB_URI', 'mongodb://localhost:27017/test')
 
 const client = new MongoClient(dbUri, { useNewUrlParser: true })
 client.connect((err) => {
