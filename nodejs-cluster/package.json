@@ -9,13 +9,14 @@
   "author": "Anton Muravev",
   "license": "UNLICENSED",
   "dependencies": {
-    "debug": "^4.1.1",
-    "mongodb": "^3.3.1"
+    "debug": "^4.4.3",
+    "mongodb": "^7.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.4.1",
     "globals": "^17.6.0"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }

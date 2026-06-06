@@ -1,8 +1,12 @@
-const cluster = require("cluster");
-const numCPUs = require("os").cpus().length;
-const log = require("debug")("master");
+import cluster from "cluster";
+import os from "os";
+import debugFactory from "debug";
+import main from "./main.js";
 
-if (cluster.isMaster) {
+const numCPUs = os.availableParallelism();
+const log = debugFactory("master");
+
+if (cluster.isPrimary) {
     log(`Master [PID:${process.pid}] is running`);
 
     for (let i = 0; i < numCPUs; i++) {
@@ -10,8 +14,9 @@ if (cluster.isMaster) {
     }
 
     cluster.on("exit", (worker) => {
-        log(`Worker [PID:${worker.process.pid}] is offline`);
+        log(`Worker [PID:${worker.process.pid}] is offline, restarting...`);
+        cluster.fork();
     });
 } else {
-    require("./main");
+    main();
 }
