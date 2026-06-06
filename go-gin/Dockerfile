@@ -1,17 +1,15 @@
-FROM docker.io/library/golang:1.11
+FROM docker.io/library/golang:1.24
 
-ENV GO111MODULE=on
-
-WORKDIR /go/src/perfeo
+WORKDIR /app
 
 COPY go.mod go.sum ./
-RUN go get -d -v
+RUN go mod download
 COPY . .
-RUN go install -v
+RUN go build -o perfeo .
 
 EXPOSE 8080
 
-CMD [ "/go/bin/perfeo" ]
+CMD [ "./perfeo" ]
 
 HEALTHCHECK --interval=5s --timeout=30s --retries=3 \
   CMD curl --fail http://localhost:8080/ping || exit 1
