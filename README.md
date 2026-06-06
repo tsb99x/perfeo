@@ -39,3 +39,14 @@ podman-compose up wrk
 Benchmarking is done by [wrk](https://github.com/wg/wrk) utility, wrapped in [williamyeh/wrk](https://hub.docker.com/r/williamyeh/wrk/) image.
 Utility launched after DB and API by default.
 Thread/connection settings can be found in `wrk/Dockerfile`.
+
+## Check data in MongoDB
+
+Simplest way to look into data on DB side is to use `mongosh` on running MongoDB container.
+
+```sh
+podman exec -it nodejs-cluster_db_1 mongosh
+db.test.countDocuments({})
+```
+
+Change `nodejs-cluster` part for name of concrete solution directory.
