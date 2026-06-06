@@ -7,7 +7,8 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/mongodb/mongo-go-driver/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 func getEnvVar(varName string) string {
@@ -22,10 +23,16 @@ func main() {
 	dbURI := getEnvVar("DB_URI")
 	port := getEnvVar("PORT")
 
-	client, err := mongo.Connect(context.TODO(), dbURI)
+	client, err := mongo.Connect(options.Client().ApplyURI(dbURI))
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer func() {
+		if err := client.Disconnect(context.TODO()); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	err = client.Ping(context.TODO(), nil)
 	if err != nil {
